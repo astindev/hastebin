@@ -1,0 +1,40 @@
+#!/usr/bin/env ruby
+require 'optparse'
+require "uri"
+require "net/http"
+require "hastebin"
+
+opts = OptionParser.new do |opts|
+  opts.banner = "\n«««««««««««««««««»»»»»»»»»»»»»»»»»»»"
+  opts.separator "««««««««««« Hastebin CLI »»»»»»»»»»»"
+  opts.separator "«««««««««««««««««»»»»»»»»»»»»»»»»»»»"
+  opts.separator ""
+  opts.separator 'Usage: hastebin -c "scritp" -> write'
+  opts.separator 'Usage: hastebin -r "/path/to/file" -> read file'
+  opts.separator ""
+  opts.separator "Examples:"
+  opts.separator '  hastebin -c "puts("hello")"'
+  opts.separator '  hastebin -r "./text.txt"'
+  opts.separator ""
+  opts.separator "Options:"
+
+  opts.on("-c script") do |a|
+
+    puts "View in: https://hasteb.in/#{Hastebin.code(a)}"
+
+    exit
+  end
+
+  opts.on("-r file") do |a|
+    file = File.open(a)
+    data = []
+    file.each do |line|
+    data.push(line)
+    $text = data.join("")
+    end
+    puts "View in: https://hasteb.in/#{Hastebin.code($text)}"
+
+    exit
+  end
+end
+opts.parse!

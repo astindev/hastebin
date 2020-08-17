@@ -10,6 +10,7 @@ Gem::Specification.new do |s|
   s.homepage    = "https://rubygems.org/gems/discloud-status"
   s.summary     = "CLI tool that uploads text to hasteb.in ."
   s.description = ""
+  s.executables   = ["hastebin"]
   s.license     = "MIT"
   s.require_paths = ['lib']
   s.files         = ["lib/hastebin.rb"]

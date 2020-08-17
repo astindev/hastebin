@@ -9,9 +9,16 @@ To install this package using GEM, run:
 
 ## Usage
 
-### Via the Shell
+### Write via the Shell
+```sh
+$ hastebin -c "puts("hello")"
+  hastebin -r "./text.txt"
 
-coming soon...                   
+```            
+### Read Files via the Shell
+```sh
+$ hastebin -c "puts("hello")"
+  hastebin -r "./text.txt"
 
 ---
 
@@ -21,7 +28,6 @@ coming soon...
 require 'hastebin'
 
 puts Hastebin.code("puts('test')") # return key
-# View in https://hasteb.in/keyhere
 ```
 
 ## License
