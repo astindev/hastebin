@@ -20,7 +20,7 @@ $ hastebin -c "puts("hello")"
 $ hastebin -c "puts("hello")"
   hastebin -r "./text.txt"
 
----
+```
 
 ### Via the Ruby API
 
