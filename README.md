@@ -12,7 +12,6 @@ To install this package using GEM, run:
 ### Write via the Shell
 ```sh
 $ hastebin -c "puts("hello")"
-  hastebin -r "./text.txt"
 
 ```            
 ### Read Files via the Shell
