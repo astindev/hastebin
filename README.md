@@ -18,7 +18,7 @@ coming soon...
 ### Via the Ruby API
 
 ```ruby
-require './lib/hastebin'
+require 'hastebin'
 
 puts Hastebin.code("puts('test')") # return key
 ```
