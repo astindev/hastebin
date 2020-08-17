@@ -21,6 +21,7 @@ coming soon...
 require 'hastebin'
 
 puts Hastebin.code("puts('test')") # return key
+# https://hasteb.in/keyhere
 ```
 
 ## License
