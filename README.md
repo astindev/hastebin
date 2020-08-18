@@ -33,7 +33,7 @@ puts Hastebin.sendFile("./test.rb") # return key
 
 # Read Files via hasteb.in
 #                        key
-puts Hastebin.readRaw('exezebip')
+puts Hastebin.readRaw('exezebip') # return raw
 
 # Run Ruby File via hasteb.in
 #                key
