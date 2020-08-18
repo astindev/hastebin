@@ -16,8 +16,7 @@ $ hastebin -c "puts("hello")"
 ```            
 ### Read Files via the Shell
 ```sh
-$ hastebin -c "puts("hello")"
-  hastebin -r "./text.txt"
+$ hastebin -r "./text.txt"
 
 ```
 
@@ -26,7 +25,22 @@ $ hastebin -c "puts("hello")"
 ```ruby
 require 'hastebin'
 
+# Write and Send
 puts Hastebin.code("puts('test')") # return key
+
+# Send Files
+puts Hastebin.sendFile("./test.rb") # return key
+
+# Read Files via hasteb.in
+#                        key
+puts Hastebin.readRaw('exezebip')
+
+# Run Ruby File via hasteb.in
+#                key
+Hastebin.run('exezebip')
+
+# Download File via hasteb.in
+Hastebin.download('exezebip')
 ```
 
 ## License
