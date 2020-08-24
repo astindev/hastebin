@@ -1,22 +1,28 @@
 require "uri"
 require "net/http"
 require "json"
+require "colorize"
 
 module Hastebin
 
-def self.code(code)
-    url = URI("https://hasteb.in/documents")
+$base_url = "https://hasteb.in/"
+$domain = $base_url.gsub("https://","").gsub('/','')
+
+
+def self.write(code)
+    url = URI($base_url + "documents")
 
     https = Net::HTTP.new(url.host, url.port);
       https.use_ssl = true
 
     request = Net::HTTP::Post.new(url)
       request.body = code
-
+puts "[INFO] ".red + "Sent with success".green
 $res = https.request(request)
 
 return JSON.parse($res.read_body)['key']
 end
+
 
 def self.sendFile(path)
     
@@ -26,24 +32,29 @@ def self.sendFile(path)
     data.push(line)
     $text = data.join("")
     end
-return code($text)
+return write($text)
 end
 
 def self.readRaw(key)
     
-https = Net::HTTP.new('hasteb.in', 443)
+https = Net::HTTP.new($domain, 443)
 
 https.use_ssl = true
 
 res = https.get("/raw/#{key}")
 
+if res.code.to_i == 404
+    puts "[INFO] ".red+"#{JSON.parse(res.body)['message']}".red
+else
+    puts "[INFO] ".red+"Received with success".green
+    return res.body
+end
 
-return res.body
 end
 
 def self.run(key)
     
-    https = Net::HTTP.new('hasteb.in', 443)
+    https = Net::HTTP.new($domain, 443)
     
     https.use_ssl = true
     
@@ -59,17 +70,41 @@ def self.run(key)
     File.delete("./#{key}.rb")
     end
 
-    def self.download(key)
+def self.download(key)
     
-        https = Net::HTTP.new('hasteb.in', 443)
+    https = Net::HTTP.new($domain, 443)
         
-        https.use_ssl = true
+    https.use_ssl = true
         
-        res = https.get("/raw/#{key}")
+    res = https.get("/raw/#{key}")
         
-        File.open("#{key}", 'w') do |line|
-            line.puts(res.body)
-        end
+    File.open("#{key}", 'w') do |line|
+        line.puts(res.body)
+    end
         
-        end
+end
+def self.base_url
+    return $base_url
+end
+
+def self.domain
+    return $domain
+end
+
+def self.ping
+    t = Time.now()
+    uri = URI($base_url)
+    res = Net::HTTP.get(uri)
+    t = (Time.now().to_f - t.to_f) * 1000
+    puts res
+    return t.to_i
+    
+end
+
+# Warns 
+
+def self.code(code)
+    return "[INFO] ".red+"Please use " + "write".green + " instead of " + "code".red
+end
+
 end

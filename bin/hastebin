@@ -3,29 +3,36 @@ require 'optparse'
 require "uri"
 require "net/http"
 require "hastebin"
+require "colorize"
 
 opts = OptionParser.new do |opts|
   opts.banner = "\n«««««««««««««««««»»»»»»»»»»»»»»»»»»»"
   opts.separator "««««««««««« Hastebin CLI »»»»»»»»»»»"
   opts.separator "«««««««««««««««««»»»»»»»»»»»»»»»»»»»"
   opts.separator ""
-  opts.separator 'Usage: hastebin -c "scritp" -> write'
-  opts.separator 'Usage: hastebin -r "/path/to/file" -> read file'
+  opts.separator 'Usage: hastebin --write "script" -> write'
+  opts.separator 'Usage: hastebin --up "/path/to/file" -> upload file'
+  opts.separator 'Usage: hastebin --download "key or key.rb" -> download via hasteb.in'
+  opts.separator 'Usage: hastebin --run "key or key.rb" -> run ruby via hasteb.in'
+  opts.separator 'Usage: hastebin --read "key or key.rb" -> Read files via hasteb.in'
   opts.separator ""
   opts.separator "Examples:"
-  opts.separator '  hastebin -c "puts("hello")"'
-  opts.separator '  hastebin -r "./text.txt"'
+  opts.separator '  hastebin --write "puts("hello")"'
+  opts.separator '  hastebin --up "./text.txt"'
+  opts.separator '  hastebin --download "oquluqic"'
+  opts.separator '  hastebin --run "oquluqic"'
+  opts.separator '  hastebin --download "oquluqic"'
   opts.separator ""
   opts.separator "Options:"
 
-  opts.on("-c script") do |a|
+  opts.on("--write script") do |a|
 
     puts "View in: https://hasteb.in/#{Hastebin.code(a)}"
 
     exit
   end
 
-  opts.on("-r file") do |a|
+  opts.on("--up file") do |a|
     file = File.open(a)
     data = []
     file.each do |line|
@@ -33,6 +40,51 @@ opts = OptionParser.new do |opts|
     $text = data.join("")
     end
     puts "View in: https://hasteb.in/#{Hastebin.code($text)}"
+
+    exit
+  end
+
+  opts.on("--download key") do |key|
+    https = Net::HTTP.new('hasteb.in', 443)
+        
+    https.use_ssl = true
+    
+    res = https.get("/raw/#{key}")
+    
+    File.open("#{key}", 'w') do |line|
+        line.puts(res.body)
+    end
+
+    exit
+  end
+
+  opts.on("--run key") do |key|
+
+    https = Net::HTTP.new('hasteb.in', 443)
+    https.use_ssl = true
+    
+    res = https.get("/raw/#{key}")
+    
+    File.open("#{key}.rb", 'w') do |line|
+        line.puts(res.body)
+    end
+    
+        require("./#{key}")
+  
+    require("./#{key}")
+    File.delete("./#{key}.rb")
+
+    exit
+  end
+
+  opts.on("--read key") do |key|
+    https = Net::HTTP.new('hasteb.in', 443)
+        
+    https.use_ssl = true
+    
+    res = https.get("/raw/#{key}")
+    
+    puts res.body
 
     exit
   end

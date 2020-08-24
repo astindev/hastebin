@@ -11,36 +11,58 @@ To install this package using GEM, run:
 
 ### Write via the Shell
 ```sh
-$ hastebin -c "puts("hello")"
+$ hastebin --write "puts("hello")"
 
 ```            
-### Read Files via the Shell
+### Upload Files via the Shell
 ```sh
-$ hastebin -r "./text.txt"
+$ hastebin --upload "./text.txt"
 
 ```
+### Download Files via the Shell
+```sh
+$ hastebin --download "wihuwavi"
 
+```
+### Run Ruby Files via the Shell
+```sh
+$ hastebin --run "wihuwavi"
+
+```
+### Read Files via the Shell
+```sh
+$ hastebin --read "wihuwavi"
+
+```
 ### Via the Ruby API
 
 ```ruby
 require 'hastebin'
 
 # Write and Send
-puts Hastebin.code("puts('test')") # return key
+puts Hastebin.write("puts('Written with Hastebin CLI Ruby')") # return key
 
 # Send Files
-puts Hastebin.sendFile("./test.rb") # return key
+puts Hastebin.sendFile("./file.rb") # return key
 
 # Read Files via hasteb.in
 #                        key
-puts Hastebin.readRaw('exezebip') # return raw
+puts Hastebin.readRaw('wihuwavi') # return raw
 
 # Run Ruby File via hasteb.in
 #                key
-Hastebin.run('exezebip')
+Hastebin.run('wihuwavi')
 
 # Download File via hasteb.in
-Hastebin.download('exezebip')
+Hastebin.download('wihuwavi')
+
+
+puts Hastebin.base_url # https://hasteb.in/
+
+puts Hastebin.domain # hasteb.in
+
+puts Hastebin.ping # 450
+
 ```
 
 ## License

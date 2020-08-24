@@ -22,4 +22,5 @@ Gem::Specification.new do |s|
     'documentation_uri' => 'https://github.com/astindev/hastebin/'
   }
   s.add_dependency 'json'
+  s.add_dependency 'colorize'
 end
