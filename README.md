@@ -56,6 +56,8 @@ Hastebin.run('wihuwavi')
 # Download File via hasteb.in
 Hastebin.download('wihuwavi')
 
+# Custom server
+Hastebin.base_url = 'https://hastebin.com/'
 
 puts Hastebin.base_url # https://hasteb.in/
 

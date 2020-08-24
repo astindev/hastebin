@@ -83,6 +83,13 @@ def self.download(key)
     end
         
 end
+def self.base_url=(url)
+     $base_url = url
+     $domain = $base_url.gsub("https://","").gsub('/','')
+     puts "[INFO] ".red+"URL switched to: ".green + url + " and domain switched to: ".green + $domain
+     return url
+end
+
 def self.base_url
     return $base_url
 end
@@ -97,7 +104,6 @@ def self.ping
     res = Net::HTTP.get(uri)
     t = (Time.now().to_f - t.to_f) * 1000
     return t.to_i
-    
 end
 
 # Warns 
