@@ -96,7 +96,6 @@ def self.ping
     uri = URI($base_url)
     res = Net::HTTP.get(uri)
     t = (Time.now().to_f - t.to_f) * 1000
-    puts res
     return t.to_i
     
 end
