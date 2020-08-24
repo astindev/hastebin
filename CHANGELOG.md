@@ -1,3 +1,7 @@
+## 0.2.7 / 24/08/2020
+* Bugs Fix Hastebin.ping()
+## 0.2.6 / 24/08/2020
+* Bugs Fix Hastebin CLI
 ## 0.2.5 / 24/08/2020
 * improvements
 * Changes
