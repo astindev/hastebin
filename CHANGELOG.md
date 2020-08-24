@@ -1,10 +1,12 @@
+## 0.2.8 / 24/08/2020
+* Add: Hastebin.base_url = "https://hastebin.com/"
 ## 0.2.7 / 24/08/2020
 * Bugs Fix Hastebin.ping()
 ## 0.2.6 / 24/08/2020
 * Bugs Fix Hastebin CLI
 ## 0.2.5 / 24/08/2020
 * improvements
-### Changes
+* Changes
 ```diff
 - puts Hastebin.code("puts('Written with Hastebin CLI Ruby')")
 + puts Hastebin.write("puts('Written with Hastebin CLI Ruby')")
