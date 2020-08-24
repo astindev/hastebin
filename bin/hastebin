@@ -27,7 +27,7 @@ opts = OptionParser.new do |opts|
 
   opts.on("--write script") do |a|
 
-    puts "View in: https://hasteb.in/#{Hastebin.code(a)}"
+    puts "View in: https://hasteb.in/#{Hastebin.write(a)}"
 
     exit
   end
@@ -39,7 +39,7 @@ opts = OptionParser.new do |opts|
     data.push(line)
     $text = data.join("")
     end
-    puts "View in: https://hasteb.in/#{Hastebin.code($text)}"
+    puts "View in: https://hasteb.in/#{Hastebin.write($text)}"
 
     exit
   end
