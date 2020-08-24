@@ -4,7 +4,7 @@
 * Bugs Fix Hastebin CLI
 ## 0.2.5 / 24/08/2020
 * improvements
-* Changes
+### Changes
 ```diff
 - puts Hastebin.code("puts('Written with Hastebin CLI Ruby')")
 + puts Hastebin.write("puts('Written with Hastebin CLI Ruby')")
