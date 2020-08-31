@@ -7,7 +7,6 @@ Gem::Specification.new do |s|
   s.version     = Hastebin::VERSION
   s.authors     = ["Astin"]
   s.email       = [""]
-  s.homepage    = "https://rubygems.org/gems/discloud-status"
   s.summary     = "CLI tool that uploads text to hasteb.in ."
   s.description = ""
   s.executables   = ["hastebin"]
